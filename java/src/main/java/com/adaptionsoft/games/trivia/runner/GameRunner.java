@@ -11,28 +11,32 @@ public class GameRunner {
 	private static Random rand = new Random();
 
 	public static void main(String[] args) {
-		Game aGame = new Game();
-		
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
-		
+		Game game = createGameWithPlayers("Chet", "Pat", "Sue");
 
-	
 		do {
-			
-			aGame.roll(getRandomNumberBetween1And5());
-			
-			if (rand.nextInt(9) == 7) {
-				notAWinner = aGame.wrongAnswer();
-			} else {
-				notAWinner = aGame.wasCorrectlyAnswered();
-			}
-			
-			
-			
+			playGameRandomly(game);
 		} while (notAWinner);
-		
+	}
+
+	private static void playGameRandomly(Game game) {
+		game.roll(getRandomNumberBetween1And5());
+
+		if (rand.nextInt(9) == 7) {
+            notAWinner = game.wrongAnswer();
+        } else {
+            notAWinner = game.wasCorrectlyAnswered();
+        }
+	}
+
+	private static Game createGameWithPlayers(String... players) {
+		Game game = new Game();
+		for (String player: players){
+			game.add(player);
+		}
+		game.add("Chet");
+		game.add("Pat");
+		game.add("Sue");
+		return game;
 	}
 
 	private static int getRandomNumberBetween1And5() {

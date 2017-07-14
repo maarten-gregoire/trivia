@@ -5,10 +5,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class SomeTest {
+public class GameTest {
 
 	@Rule
 	public ExpectedException expectException = ExpectedException.none();
@@ -18,7 +19,7 @@ public class SomeTest {
 		expectException.expect(IndexOutOfBoundsException.class);
 		Game game = new Game();
 
-		boolean result = game.wrongAnswer();
+		game.wrongAnswer();
 	}
 
 	@Test
@@ -53,5 +54,20 @@ public class SomeTest {
 		game.add("Bart");
 
 		assertTrue(game.isPlayable());
+	}
+
+	@Test
+	public void givenNoPlayers_thenHowManyPlayersIs0() {
+		Game game = new Game();
+
+		assertThat(game.howManyPlayers()).isEqualTo(0);
+	}
+
+	@Test
+	public void given1Player_thenHowManyPlayersIs1() {
+		Game game = new Game();
+		game.add("Bart");
+
+		assertThat(game.howManyPlayers()).isEqualTo(1);
 	}
 }
