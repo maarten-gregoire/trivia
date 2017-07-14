@@ -19,7 +19,7 @@ public class GameTest {
 		expectException.expect(IndexOutOfBoundsException.class);
 		Game game = new Game();
 
-		game.wrongAnswer();
+		game.giveWrongAnswer();
 	}
 
 	@Test
@@ -27,7 +27,7 @@ public class GameTest {
 		Game game = new Game();
 		game.add("Ben");
 
-		boolean result = game.wrongAnswer();
+		boolean result = game.giveWrongAnswer();
 
 		assertTrue(result);
 	}
@@ -37,7 +37,7 @@ public class GameTest {
 		Game game = new Game();
 		game.add("Ben");
 
-		boolean result = game.wasCorrectlyAnswered();
+		boolean result = game.giveCorrectAnswer();
 
 		assertTrue(result);
 	}
@@ -49,7 +49,7 @@ public class GameTest {
 
 		giveCorrectAnswers(game, 5);
 
-		assertFalse(game.wasCorrectlyAnswered());
+		assertFalse(game.giveCorrectAnswer());
 	}
 
 	@Test
@@ -59,7 +59,7 @@ public class GameTest {
 
 		giveCorrectAnswers(game, 4);
 		giveWrongAnswers(game, 2);
-		assertTrue(game.wasCorrectlyAnswered());
+		assertTrue(game.giveCorrectAnswer());
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class GameTest {
 		game.add("Ben");
 		game.add("Bart");
 
-		boolean result = game.wasCorrectlyAnswered();
+		boolean result = game.giveCorrectAnswer();
 
 		assertTrue(result);
 	}
@@ -79,7 +79,7 @@ public class GameTest {
 		game.add("Ben");
 		game.add("Bart");
 
-		assertTrue(game.wrongAnswer());
+		assertTrue(game.giveWrongAnswer());
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class GameTest {
 		game.add("Bart");
 
 		giveCorrectAnswers(game, 5);
-		assertTrue(game.wasCorrectlyAnswered());
+		assertTrue(game.giveCorrectAnswer());
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class GameTest {
 
 		giveCorrectAnswers(game, 10);
 
-		assertFalse(game.wasCorrectlyAnswered());
+		assertFalse(game.giveCorrectAnswer());
 	}
 
 
@@ -111,7 +111,7 @@ public class GameTest {
 		game.add("Bart");
 
 		giveWrongAnswers(game, 10);
-		assertTrue(game.wrongAnswer());
+		assertTrue(game.giveWrongAnswer());
 	}
 
 	@Test
@@ -121,7 +121,7 @@ public class GameTest {
 		game.add("Bart");
 
 		giveCorrectAnswers(game, 11);
-		assertTrue(game.wrongAnswer());
+		assertTrue(game.giveWrongAnswer());
 
 	}
 	@Test
@@ -131,7 +131,7 @@ public class GameTest {
 		game.add("Bart");
 		game.add("James");
 
-		assertTrue(game.wrongAnswer());
+		assertTrue(game.giveWrongAnswer());
 	}
 
 	@Test
@@ -175,14 +175,14 @@ public class GameTest {
 
 	private void giveWrongAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
-			game.wrongAnswer();
+			game.giveWrongAnswer();
 		}
 	}
 
 
 	private void giveCorrectAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
-			game.wasCorrectlyAnswered();
+			game.giveCorrectAnswer();
 		}
 	}
 }
