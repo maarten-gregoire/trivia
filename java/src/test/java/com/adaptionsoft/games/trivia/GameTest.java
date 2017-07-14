@@ -162,7 +162,7 @@ public class GameTest {
 	public void givenNoPlayers_thenHowManyPlayersIs0() {
 		Game game = new Game();
 
-		assertThat(game.howManyPlayers()).isEqualTo(0);
+		assertThat(game.getNumberOfPlayers()).isEqualTo(0);
 	}
 
 	@Test
@@ -170,7 +170,7 @@ public class GameTest {
 		Game game = new Game();
 		game.add("Bart");
 
-		assertThat(game.howManyPlayers()).isEqualTo(1);
+		assertThat(game.getNumberOfPlayers()).isEqualTo(1);
 	}
 
 	private void giveWrongAnswers(Game game, int amount) {
