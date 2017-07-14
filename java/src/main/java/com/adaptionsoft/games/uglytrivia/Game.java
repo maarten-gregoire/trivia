@@ -84,7 +84,6 @@ public class Game {
 			System.out.println("The category is " + currentCategory());
 			askQuestion();
 		}
-		
 	}
 
 	private void askQuestion() {
@@ -97,8 +96,7 @@ public class Game {
 		if (currentCategory() == "Rock")
 			System.out.println(rockQuestions.removeFirst());		
 	}
-	
-	
+
 	private String currentCategory() {
 		if (places[currentPlayer] == 0) return "Pop";
 		if (places[currentPlayer] == 4) return "Pop";
@@ -121,22 +119,17 @@ public class Game {
 						+ " now has "
 						+ purses[currentPlayer]
 						+ " Gold Coins.");
-				
 				boolean winner = didPlayerWin();
 				currentPlayer++;
 				if (currentPlayer == players.size()) currentPlayer = 0;
-				
 				return winner;
 			} else {
 				currentPlayer++;
 				if (currentPlayer == players.size()) currentPlayer = 0;
 				return true;
 			}
-			
-			
-			
+
 		} else {
-		
 			System.out.println("Answer was correct!!!!");
 			purses[currentPlayer]++;
 			System.out.println(players.get(currentPlayer) 
@@ -161,7 +154,6 @@ public class Game {
 		if (currentPlayer == players.size()) currentPlayer = 0;
 		return true;
 	}
-
 
 	private boolean didPlayerWin() {
 		return !(purses[currentPlayer] == 6);
