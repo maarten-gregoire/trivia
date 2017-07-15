@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class PositionTest extends ConsoleOutputTest {
+public class LocationTest extends ConsoleOutputTest {
 
     @Test
     public void givenPlayer_whenRoll12_thenLocationIs0() {
