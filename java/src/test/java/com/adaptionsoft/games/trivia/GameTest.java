@@ -1,18 +1,37 @@
 package com.adaptionsoft.games.trivia;
 
 import com.adaptionsoft.games.uglytrivia.Game;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static junit.framework.TestCase.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
+	private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+
 	@Rule
 	public ExpectedException expectException = ExpectedException.none();
+
+	@Before
+	public void setUpStreams() {
+		System.setOut(new PrintStream(consoleOutput));
+	}
+
+	@After
+	public void cleanUpStreams() {
+		System.setOut(null);
+		System.setErr(null);
+	}
 
 	@Test
 	public void givenNoPlayers_whenWrongAnswer_thenThrowIndexOutOfBoundsException() {
@@ -173,12 +192,33 @@ public class GameTest {
 		assertThat(game.getNumberOfPlayers()).isEqualTo(1);
 	}
 
+	@Test
+	public void givenPlayer_whenInPosition0AfterRoll_thenCurrentCategoryIsPop () {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(0);
+
+		String expectedOutputForPositionLine = "Bart's new location is 0";
+		String expectedOutputForCategoryLine = "The category is Pop";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	private String[] getOutputInLines() {
+		return consoleOutput.toString().split("\r\n");
+	}
+
 	private void giveWrongAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
 			game.giveWrongAnswer();
 		}
 	}
-
 
 	private void giveCorrectAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
