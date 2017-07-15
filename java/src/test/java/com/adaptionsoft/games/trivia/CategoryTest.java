@@ -1,6 +1,5 @@
 package com.adaptionsoft.games.trivia;
 
-import com.adaptionsoft.games.uglytrivia.Game;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -11,7 +10,6 @@ public class CategoryTest extends ConsoleOutputTest {
     private String POP = "Pop";
     private String SCIENCE = "Science";
     private String SPORTS = "Sports";
-    private String PLAYER_NAME = "Bart";
 
     @Test
     public void givenPlayer_whenInLocation0AfterRoll_thenCurrentCategoryIsPop() {
@@ -85,20 +83,8 @@ public class CategoryTest extends ConsoleOutputTest {
         assertCategoryEquals(ROCK);
     }
 
-    @Test
-    public void givenPlayer_whenRoll12_thenLocationIs0() {
-        createGameWithPlayersAndRoll(12, PLAYER_NAME);
-
-        String expectedOutputForLocationLine = PLAYER_NAME + "'s new location is 0";
-
-        String[] outputLines = getOutputInLines();
-        String actualOutputForLocationLine = outputLines[4];
-
-        assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
-    }
-
     private void assertLocationEquals(int location) {
-        String expectedOutputForLocationLine = PLAYER_NAME + "'s new location is " + location;
+        String expectedOutputForLocationLine = PLAYER1_NAME + "'s new location is " + location;
         String actualOutputForLocationLine = getLocationLineFromConsole();
         assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
     }
@@ -120,15 +106,9 @@ public class CategoryTest extends ConsoleOutputTest {
     }
 
     private void createGameWithPositionAfterRoll(int roll) {
-        createGameWithPlayersAndRoll(roll, PLAYER_NAME);
+        createGameWithPlayersAndRoll(roll, PLAYER1_NAME);
 
         assertLocationEquals(roll);
     }
 
-    private void createGameWithPlayersAndRoll(int roll, String... playerNames) {
-        Game game = new Game();
-        game.add(playerNames[0]);
-
-        game.roll(roll);
-    }
 }

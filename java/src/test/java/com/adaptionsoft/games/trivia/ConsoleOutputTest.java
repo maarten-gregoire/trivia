@@ -1,5 +1,6 @@
 package com.adaptionsoft.games.trivia;
 
+import com.adaptionsoft.games.uglytrivia.Game;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public abstract class ConsoleOutputTest {
+
+    String PLAYER1_NAME = "Bart";
 
     private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
 
@@ -28,5 +31,13 @@ public abstract class ConsoleOutputTest {
 
     String[] getOutputInLines() {
         return consoleOutput.toString().split("\r\n");
+    }
+
+
+    void createGameWithPlayersAndRoll(int roll, String... playerNames) {
+        Game game = new Game();
+        game.add(playerNames[0]);
+
+        game.roll(roll);
     }
 }
