@@ -193,7 +193,7 @@ public class GameTest {
 	}
 
 	@Test
-	public void givenPlayer_whenInPosition0AfterRoll_thenCurrentCategoryIsPop () {
+	public void givenPlayer_whenInPosition0AfterRoll_thenCurrentCategoryIsPop() {
 		Game game = new Game();
 		game.add("Bart");
 
@@ -208,6 +208,218 @@ public class GameTest {
 
 		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
 		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition1AfterRoll_thenCurrentCategoryIsScience() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(1);
+
+		String expectedOutputForPositionLine = "Bart's new location is 1";
+		String expectedOutputForCategoryLine = "The category is Science";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition2AfterRoll_thenCurrentCategoryIsSports() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(2);
+
+		String expectedOutputForPositionLine = "Bart's new location is 2";
+		String expectedOutputForCategoryLine = "The category is Sports";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+	@Test
+	public void givenPlayer_whenInPosition3AfterRoll_thenCurrentCategoryIsRock() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(3);
+
+		String expectedOutputForPositionLine = "Bart's new location is 3";
+		String expectedOutputForCategoryLine = "The category is Rock";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition4AfterRoll_thenCurrentCategoryIsPop() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(4);
+
+		String expectedOutputForPositionLine = "Bart's new location is 4";
+		String expectedOutputForCategoryLine = "The category is Pop";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition5AfterRoll_thenCurrentCategoryIsScience() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(5);
+
+		String expectedOutputForPositionLine = "Bart's new location is 5";
+		String expectedOutputForCategoryLine = "The category is Science";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition6AfterRoll_thenCurrentCategoryIsSports() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(6);
+
+		String expectedOutputForPositionLine = "Bart's new location is 6";
+		String expectedOutputForCategoryLine = "The category is Sports";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition7AfterRoll_thenCurrentCategoryIsRock() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(7);
+
+		String expectedOutputForPositionLine = "Bart's new location is 7";
+		String expectedOutputForCategoryLine = "The category is Rock";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition8AfterRoll_thenCurrentCategoryIsPop() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(8);
+
+		String expectedOutputForPositionLine = "Bart's new location is 8";
+		String expectedOutputForCategoryLine = "The category is Pop";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition9AfterRoll_thenCurrentCategoryIsScience() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(9);
+
+		String expectedOutputForPositionLine = "Bart's new location is 9";
+		String expectedOutputForCategoryLine = "The category is Science";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition10AfterRoll_thenCurrentCategoryIsSports() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(10);
+
+		String expectedOutputForPositionLine = "Bart's new location is 10";
+		String expectedOutputForCategoryLine = "The category is Sports";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenInPosition11AfterRoll_thenCurrentCategoryIsRock() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(11);
+
+		String expectedOutputForPositionLine = "Bart's new location is 11";
+		String expectedOutputForCategoryLine = "The category is Rock";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+		String actualOutputForCategoryLine = outputLines[5];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
+		assertEquals(expectedOutputForCategoryLine, actualOutputForCategoryLine);
+	}
+
+	@Test
+	public void givenPlayer_whenRoll12_thenPositionIs0() {
+		Game game = new Game();
+		game.add("Bart");
+
+		game.roll(12);
+
+		String expectedOutputForPositionLine = "Bart's new location is 0";
+
+		String[] outputLines = getOutputInLines();
+		String actualOutputForPositionLine = outputLines[4];
+
+		assertEquals(expectedOutputForPositionLine, actualOutputForPositionLine);
 	}
 
 	private String[] getOutputInLines() {
