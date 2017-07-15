@@ -22,9 +22,9 @@ public class GameRunner {
 		game.roll(getRandomNumberBetween1And5());
 
 		if (rand.nextInt(9) == 7) {
-            notAWinner = game.giveWrongAnswer();
+            notAWinner = game.wrongAnswer();
         } else {
-            notAWinner = game.giveCorrectAnswer();
+            notAWinner = game.wasCorrectlyAnswered();
         }
 	}
 

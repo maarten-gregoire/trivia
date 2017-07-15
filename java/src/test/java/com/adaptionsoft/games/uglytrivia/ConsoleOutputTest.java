@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.trivia;
+package com.adaptionsoft.games.uglytrivia;
 
 import org.junit.After;
 import org.junit.Before;

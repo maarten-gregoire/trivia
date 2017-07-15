@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.trivia;
+package com.adaptionsoft.games.uglytrivia;
 
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class GameTest extends ConsoleOutputTest {
 		expectException.expect(IndexOutOfBoundsException.class);
 		Game game = new Game();
 
-		game.giveWrongAnswer();
+		game.wrongAnswer();
 	}
 
 	@Test
@@ -21,7 +21,7 @@ public class GameTest extends ConsoleOutputTest {
 		Game game = new Game();
 		game.add("Ben");
 
-		boolean result = game.giveWrongAnswer();
+		boolean result = game.wrongAnswer();
 
 		assertTrue(result);
 	}
@@ -31,7 +31,7 @@ public class GameTest extends ConsoleOutputTest {
 		Game game = new Game();
 		game.add("Ben");
 
-		boolean result = game.giveCorrectAnswer();
+		boolean result = game.wasCorrectlyAnswered();
 
 		assertTrue(result);
 	}
@@ -43,7 +43,7 @@ public class GameTest extends ConsoleOutputTest {
 
 		giveCorrectAnswers(game, 5);
 
-		assertFalse(game.giveCorrectAnswer());
+		assertFalse(game.wasCorrectlyAnswered());
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class GameTest extends ConsoleOutputTest {
 
 		giveCorrectAnswers(game, 4);
 		giveWrongAnswers(game, 2);
-		assertTrue(game.giveCorrectAnswer());
+		assertTrue(game.wasCorrectlyAnswered());
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Ben");
 		game.add("Bart");
 
-		boolean result = game.giveCorrectAnswer();
+		boolean result = game.wasCorrectlyAnswered();
 
 		assertTrue(result);
 	}
@@ -73,7 +73,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Ben");
 		game.add("Bart");
 
-		assertTrue(game.giveWrongAnswer());
+		assertTrue(game.wrongAnswer());
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Bart");
 
 		giveCorrectAnswers(game, 5);
-		assertTrue(game.giveCorrectAnswer());
+		assertTrue(game.wrongAnswer());
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class GameTest extends ConsoleOutputTest {
 
 		giveCorrectAnswers(game, 10);
 
-		assertFalse(game.giveCorrectAnswer());
+		assertFalse(game.wasCorrectlyAnswered());
 	}
 
 	@Test
@@ -104,7 +104,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Bart");
 
 		giveWrongAnswers(game, 10);
-		assertTrue(game.giveWrongAnswer());
+		assertTrue(game.wrongAnswer());
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Bart");
 
 		giveCorrectAnswers(game, 11);
-		assertTrue(game.giveWrongAnswer());
+		assertTrue(game.wrongAnswer());
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class GameTest extends ConsoleOutputTest {
 		game.add("Bart");
 		game.add("James");
 
-		assertTrue(game.giveWrongAnswer());
+		assertTrue(game.wrongAnswer());
 	}
 
 	@Test
@@ -155,7 +155,7 @@ public class GameTest extends ConsoleOutputTest {
 	public void givenNoPlayers_thenHowManyPlayersIs0() {
 		Game game = new Game();
 
-		assertThat(game.getNumberOfPlayers()).isEqualTo(0);
+		assertThat(game.howManyPlayers()).isEqualTo(0);
 	}
 
 	@Test
@@ -163,18 +163,18 @@ public class GameTest extends ConsoleOutputTest {
 		Game game = new Game();
 		game.add("Bart");
 
-		assertThat(game.getNumberOfPlayers()).isEqualTo(1);
+		assertThat(game.howManyPlayers()).isEqualTo(1);
 	}
 
 	private void giveWrongAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
-			game.giveWrongAnswer();
+			game.wrongAnswer();
 		}
 	}
 
 	private void giveCorrectAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {
-			game.giveCorrectAnswer();
+			game.wasCorrectlyAnswered();
 		}
 	}
 }
