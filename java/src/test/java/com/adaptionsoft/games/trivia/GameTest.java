@@ -1,36 +1,13 @@
 package com.adaptionsoft.games.trivia;
 
 import com.adaptionsoft.games.uglytrivia.Game;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class GameTest {
-
-	private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
-
-	@Rule
-	public ExpectedException expectException = ExpectedException.none();
-
-	@Before
-	public void setUpStreams() {
-		System.setOut(new PrintStream(consoleOutput));
-	}
-
-	@After
-	public void cleanUpStreams() {
-		System.setOut(null);
-		System.setErr(null);
-	}
+public class GameTest extends ConsoleOutputTest {
 
 	@Test
 	public void givenNoPlayers_whenWrongAnswer_thenThrowIndexOutOfBoundsException() {
@@ -190,7 +167,6 @@ public class GameTest {
 
 		assertThat(game.getNumberOfPlayers()).isEqualTo(1);
 	}
-
 
 	private void giveWrongAnswers(Game game, int amount) {
 		for (int i = 0; i < amount; i++) {

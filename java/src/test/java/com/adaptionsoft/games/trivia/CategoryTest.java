@@ -1,23 +1,11 @@
 package com.adaptionsoft.games.trivia;
 
 import com.adaptionsoft.games.uglytrivia.Game;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class CategoryTest {
-
-
-    private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(consoleOutput));
-    }
+public class CategoryTest extends ConsoleOutputTest {
 
     @Test
     public void givenPlayer_whenInLocation0AfterRoll_thenCurrentCategoryIsPop() {
@@ -249,7 +237,4 @@ public class CategoryTest {
         assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
     }
 
-    private String[] getOutputInLines() {
-        return consoleOutput.toString().split("\r\n");
-    }
 }
