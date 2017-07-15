@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-abstract class ConsoleOutputTest {
+public abstract class ConsoleOutputTest {
 
     private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
 
@@ -25,7 +25,6 @@ abstract class ConsoleOutputTest {
         System.setOut(null);
         System.setErr(null);
     }
-
 
     String[] getOutputInLines() {
         return consoleOutput.toString().split("\r\n");

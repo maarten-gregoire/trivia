@@ -98,7 +98,6 @@ public class GameTest extends ConsoleOutputTest {
 		assertFalse(game.giveCorrectAnswer());
 	}
 
-
 	@Test
 	public void givenTwoPlayers_whenElevenWrongAnswers_thenNotAWinnerTrue() {
 		Game game = new Game();
@@ -117,8 +116,8 @@ public class GameTest extends ConsoleOutputTest {
 
 		giveCorrectAnswers(game, 11);
 		assertTrue(game.giveWrongAnswer());
-
 	}
+
 	@Test
 	public void givenThreePlayers_whenOneWrongAnswer_thenNotAWinnerTrue() {
 		Game game = new Game();
