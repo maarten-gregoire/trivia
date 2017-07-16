@@ -38,4 +38,41 @@ public class PlayerTest {
         player.addGoldCoin();
         assertEquals(player.addGoldCoin(), 7);
     }
+
+    @Test
+    public void givenNewPlayer_whenAdd1ToLocation_thenLocationIs1() {
+        Player player = new Player("Ben", 1);
+        assertEquals(player.addToLocation(1), 1);
+    }
+
+    @Test
+    public void givenPlayerwithLocation4_whenAdd4ToLocation_thenLocationIs8() {
+        Player player = new Player("Ben", 1);
+        player.addToLocation(4);
+        assertEquals(player.addToLocation(4), 8);
+    }
+
+    @Test
+    public void givenNewPlayer_thenLocationIs0() {
+        Player player = new Player("Ben", 1);
+        assertEquals(player.getLocation(), 0);
+    }
+
+    @Test
+    public void givenNewPlayer_whenAdd12ToLocation_thenLocationIs0() {
+        Player player = new Player("Ben", 1);
+        assertEquals(0, player.addToLocation(12));
+    }
+
+    @Test
+    public void givenNewPlayer_whenAdd24ToLocation_thenLocationIs12() {
+        Player player = new Player("Ben", 1);
+        assertEquals(12, player.addToLocation(24));
+    }
+
+    @Test
+    public void givenNewPlayer_whenAdd27ToLocation_thenLocationIs15() {
+        Player player = new Player("Ben", 1);
+        assertEquals(15, player.addToLocation(27));
+    }
 }

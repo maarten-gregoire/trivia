@@ -18,6 +18,30 @@ public class LocationTest extends ConsoleOutputTest {
         assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
     }
 
+    @Test
+    public void givenPlayer_whenRoll24_thenLocationIs12() {
+        createGameWithPlayersAndRoll(24, PLAYER1_NAME);
+
+        String expectedOutputForLocationLine = PLAYER1_NAME + "'s new location is 12";
+
+        String[] outputLines = getOutputInLines();
+        String actualOutputForLocationLine = outputLines[4];
+
+        assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
+    }
+
+    @Test
+    public void givenPlayer_whenRoll27_thenLocationIs15() {
+        createGameWithPlayersAndRoll(27, PLAYER1_NAME);
+
+        String expectedOutputForLocationLine = PLAYER1_NAME + "'s new location is 15";
+
+        String[] outputLines = getOutputInLines();
+        String actualOutputForLocationLine = outputLines[4];
+
+        assertEquals(expectedOutputForLocationLine, actualOutputForLocationLine);
+    }
+
 
     @Test
     public void givenPlayer_whenRoll1_thenLocationIs1() {
