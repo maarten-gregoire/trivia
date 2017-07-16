@@ -32,7 +32,6 @@ public abstract class ConsoleOutputTest {
         return consoleOutput.toString().split("\r\n");
     }
 
-
     void createGameWithPlayersAndRoll(int roll, String... playerNames) {
         Game game = new Game();
         game.add(playerNames[0]);

@@ -19,22 +19,22 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenFourPlayers_whenAddOnePlayer_thenHowManyPlayersIsFive() {
-        Game game = createGameWithPlayers("Ben", "Bart", "Willy", "Luc");
-        game.add("Jan");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME);
+        game.add(PLAYER5_NAME);
 
         assertEquals(5, game.getNumberOfPlayers());
     }
 
     @Test
     public void givenFivePlayers_whenAddOnePlayer_thenThrowException() {
-        Game game = createGameWithPlayers("Ben", "Bart", "Willy", "Luc", "Harrison");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME, PLAYER5_NAME);
         expectException.expect(IndexOutOfBoundsException.class);
-        game.add("Jan");
+        game.add(PLAYER6_NAME);
     }
 
     @Test
     public void givenOnePlayer_whenOneWrongAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         boolean result = game.giveWrongAnswer();
 
@@ -43,7 +43,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenOnePlayer_whenOneCorrectAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         boolean result = game.giveCorrectAnswer();
 
@@ -52,7 +52,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenOnePlayer_whenSixCorrectAnswers_thenNotAWinnerFalse() {
-        Game game = createGameWithPlayers("Ben");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         giveCorrectAnswers(game, 5);
 
@@ -61,7 +61,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenOnePlayer_whenFourCorrectAndTwoWrongAndOneCorrectAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         giveCorrectAnswers(game, 4);
         giveWrongAnswers(game, 2);
@@ -70,7 +70,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenTwoPlayers_whenOneCorrectAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         boolean result = game.giveCorrectAnswer();
 
@@ -79,14 +79,14 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenTwoPlayers_whenOneWrongAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         assertTrue(game.giveWrongAnswer());
     }
 
     @Test
     public void givenTwoPlayers_whenSixCorrectAnswers_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         giveCorrectAnswers(game, 5);
         assertTrue(game.giveCorrectAnswer());
@@ -94,7 +94,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenTwoPlayers_whenElevenCorrectAnswers_thenNotAWinnerFalse() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         giveCorrectAnswers(game, 10);
 
@@ -652,7 +652,7 @@ public class GameTest extends ConsoleOutputTest {
             if (mustGiveCorrectAnswer) {
                 noWinnerYet = game.giveCorrectAnswer();
             } else {
-               noWinnerYet = game.giveWrongAnswer();
+                noWinnerYet = game.giveWrongAnswer();
             }
             currentPlayer++;
             if (currentPlayer >= numberOfPlayers) {
@@ -677,7 +677,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenTwoPlayers_whenElevenWrongAnswers_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         giveWrongAnswers(game, 10);
         assertTrue(game.giveWrongAnswer());
@@ -685,7 +685,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenTwoPlayers_whenWrongAnswerAfterNotAWinnerIsFalse_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         giveCorrectAnswers(game, 11);
         assertTrue(game.giveWrongAnswer());
@@ -693,7 +693,7 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenThreePlayers_whenOneWrongAnswer_thenNotAWinnerTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         assertTrue(game.giveWrongAnswer());
     }
@@ -707,14 +707,14 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void givenOnePlayer_thenIsPlayableFalse() {
-        Game game = createGameWithPlayers("Ben");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         assertFalse(game.isPlayable());
     }
 
     @Test
     public void givenTwoPlayers_thenIsPlayableTrue() {
-        Game game = createGameWithPlayers("Ben", "Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
 
         assertTrue(game.isPlayable());
     }
@@ -728,10 +728,249 @@ public class GameTest extends ConsoleOutputTest {
 
     @Test
     public void given1Player_thenHowManyPlayersIs1() {
-        Game game = new Game();
-        game.add("Bart");
+        Game game = createGameWithPlayers(PLAYER1_NAME);
 
         assertThat(game.getNumberOfPlayers()).isEqualTo(1);
+    }
+
+    @Test
+    public void givenGameWithoutPlayers_whenAddFirstPlayer_thenOutputCorrectNameInAddedLine() {
+        Game game = new Game();
+        game.add(PLAYER1_NAME);
+
+        String expectedOutput = PLAYER1_NAME + " was added";
+        String actualOutput = getPlayerAddedLineFromConsole(1);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_whenAddSecondPlayer_thenOutputCorrectNameInAddedLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.add(PLAYER2_NAME);
+
+        String expectedOutput = PLAYER2_NAME + " was added";
+        String actualOutput = getPlayerAddedLineFromConsole(2);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenAddThirdPlayer_thenOutputCorrectNameInAddedLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.add(PLAYER3_NAME);
+
+        String expectedOutput = PLAYER3_NAME + " was added";
+        String actualOutput = getPlayerAddedLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithThreePlayers_whenAddFourthPlayer_thenOutputCorrectNameInAddedLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME);
+        game.add(PLAYER4_NAME);
+
+        String expectedOutput = PLAYER4_NAME + " was added";
+        String actualOutput = getPlayerAddedLineFromConsole(4);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithFourPlayers_whenAddFifthPlayer_thenOutputCorrectNameInAddedLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME);
+        game.add(PLAYER5_NAME);
+
+        String expectedOutput = PLAYER5_NAME + " was added";
+        String actualOutput = getPlayerAddedLineFromConsole(5);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInCurrentPlayerLineInFirstTurn() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.roll(1);
+
+        String expectedOutput = PLAYER1_NAME + " is the current player";
+        String actualOutput = getLineFromConsole(2);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInCurrentPlayerLineInSecondTurn() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER1_NAME + " is the current player";
+        String actualOutput = getLineFromConsole(18);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithSecondPlayer_thenOutputCorrectNameInCurrentPlayerLineInFirstTurn() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER2_NAME + " is the current player";
+        String actualOutput = getLineFromConsole(11);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithSecondPlayer_thenOutputCorrectNameInCurrentPlayerLineInSecondTurn() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER2_NAME + " is the current player";
+        String actualOutput = getLineFromConsole(25);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInLocationLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.roll(1);
+
+        String expectedOutput = PLAYER1_NAME + "'s new location is 1";
+        String actualOutput = getLineFromConsole(4);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInGoldCoinsLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 1 Gold Coins.";
+        String actualOutput = getLineFromConsole(8);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInSentToPenaltyBoxLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.roll(1);
+        game.giveWrongAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " was sent to the penalty box";
+        String actualOutput = getLineFromConsole(8);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_thenOutputCorrectNameInOutOfPenaltyBoxLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER1_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(11);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithoutPlayers_whenAddFirstPlayer_thenOutputCorrectNumber() {
+        Game game = new Game();
+        game.add(PLAYER1_NAME);
+        int playerNumber = 1;
+
+        String expectedOutput = "They are player number " + playerNumber;
+        String actualOutput = getPlayerNumberLineFromConsole(playerNumber);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayer_whenAddSecondPlayer_thenOutputCorrectNumber() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.add(PLAYER2_NAME);
+
+        int playerNumber = 2;
+
+        String expectedOutput = "They are player number " + playerNumber;
+        String actualOutput = getPlayerNumberLineFromConsole(playerNumber);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenAddThirdPlayer_thenOutputCorrectNumber() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.add(PLAYER3_NAME);
+
+        int playerNumber = 3;
+
+        String expectedOutput = "They are player number " + playerNumber;
+        String actualOutput = getPlayerNumberLineFromConsole(playerNumber);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithThreePlayers_whenAddFourthPlayer_thenOutputCorrectNumber() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME);
+        game.add(PLAYER4_NAME);
+
+        int playerNumber = 4;
+
+        String expectedOutput = "They are player number " + playerNumber;
+        String actualOutput = getPlayerNumberLineFromConsole(playerNumber);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithFourPlayers_whenAddFifthPlayer_thenOutputCorrectNumber() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME);
+        game.add(PLAYER5_NAME);
+
+        int playerNumber = 5;
+
+        String expectedOutput = "They are player number " + playerNumber;
+        String actualOutput = getPlayerNumberLineFromConsole(playerNumber);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    private String getPlayerAddedLineFromConsole(int playerNumber) {
+        return getLineFromConsole(2 * (playerNumber - 1));
+    }
+
+    private String getLineFromConsole(int line) {
+        String[] outputLines = getOutputInLines();
+        return outputLines[line];
+    }
+
+    private String getPlayerNumberLineFromConsole(int playerNumber) {
+        return getLineFromConsole(1 + 2 * (playerNumber - 1));
     }
 
     private void giveWrongAnswers(Game game, int amount) {
