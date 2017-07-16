@@ -8,7 +8,6 @@ import static com.adaptionsoft.games.trivia.Player.aPlayer;
 public class Game {
     ArrayList<Player> players = new ArrayList<>();
     int[] positions = new int[6];
-    int[] goldCoins = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
@@ -42,7 +41,6 @@ public class Game {
 
         players.add(aPlayer(playerName, players.size()));
         positions[getNumberOfPlayers()] = 0;
-        goldCoins[getNumberOfPlayers()] = 0;
         inPenaltyBox[getNumberOfPlayers()] = false;
 
         System.out.println(playerName + " was added");
@@ -134,7 +132,6 @@ public class Game {
     }
 
     private void addGoldCoinForCurrentPlayer() {
-        goldCoins[currentPlayer.getNumber()]++;
         currentPlayer.addGoldCoin();
     }
 
