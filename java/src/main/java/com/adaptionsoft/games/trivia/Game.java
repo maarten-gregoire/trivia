@@ -19,6 +19,8 @@ public class Game {
     boolean isGettingOutOfPenaltyBox;
     private String ANSWER_WAS_CORRECT_LINE = "Answer was correct!!!!";
     private String GOLD_COINS_LINE = "%s now has %s Gold Coins.";
+    private String PLAYER_ADDED_LINE = "%s was added";
+    private String PLAYER_NUMBER_LINE = "They are player number %s";
 
     public  Game(){
         for (int i = 0; i < 50; i++) {
@@ -37,15 +39,22 @@ public class Game {
         return (getNumberOfPlayers() >= 2);
     }
 
-    public boolean add(String playerName) {
+    public void add(String playerName) {
 
         players.add(aPlayer(playerName, players.size()));
         positions[getNumberOfPlayers()] = 0;
         inPenaltyBox[getNumberOfPlayers()] = false;
 
-        System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
-        return true;
+        printPlayerNameLine(playerName);
+        printPlayerNumberLine();
+    }
+
+    private void printPlayerNumberLine() {
+        System.out.println(String.format(PLAYER_NUMBER_LINE, players.size()));
+    }
+
+    private void printPlayerNameLine(String playerName) {
+        System.out.println(String.format(PLAYER_ADDED_LINE, playerName));
     }
 
     public int getNumberOfPlayers() {
