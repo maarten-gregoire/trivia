@@ -106,17 +106,7 @@ public class Game {
     }
 
     private String getCurrentCategory() {
-        if (currentPlayer.getLocation() >= 12) return "Rock";
-        switch (currentPlayer.getLocation() % 4) {
-            case 0:
-                return "Pop";
-            case 1:
-                return "Science";
-            case 2:
-                return "Sports";
-            default:
-                return "Rock";
-        }
+        return currentPlayer.getCurrentCategory().getText();
     }
 
     public boolean giveCorrectAnswer() {

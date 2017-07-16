@@ -1,7 +1,7 @@
 package com.adaptionsoft.games.trivia;
 
 enum Category {
-    POP(1, "pop"), SCIENCE(2, "science"), SPORTS(3, "sports"), ROCK(4, "rock");
+    POP(1, "Pop"), SCIENCE(2, "Science"), SPORTS(3, "Sports"), ROCK(4, "Rock");
 
     int location;
     String text;
