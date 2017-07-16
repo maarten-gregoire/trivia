@@ -118,6 +118,7 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         }
+        boolean winner = false;
         if (inPenaltyBox[currentPlayer.getNumber()]){
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
@@ -126,17 +127,17 @@ public class Game {
                         + " now has "
                         + purses[currentPlayer.getNumber()]
                         + " Gold Coins.");
-                boolean winner = isPlayerWinner();
+                winner = isPlayerWinner();
 
                 int currentPlayerNumber = currentPlayer.getNumber()+1;
                 if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
                 currentPlayer = players.get(currentPlayerNumber);
-                return winner;
+
             } else {
                 int currentPlayerNumber = currentPlayer.getNumber()+1;
                 if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
                 currentPlayer = players.get(currentPlayerNumber);
-                return true;
+                winner = true;
             }
 
         } else {
@@ -147,13 +148,13 @@ public class Game {
                     + purses[currentPlayer.getNumber()]
                     + " Gold Coins.");
 
-            boolean winner = isPlayerWinner();
+            winner = isPlayerWinner();
 
             int currentPlayerNumber = currentPlayer.getNumber()+1;
             if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
             currentPlayer = players.get(currentPlayerNumber);
-            return winner;
         }
+        return winner;
     }
 
     public boolean giveWrongAnswer(){
