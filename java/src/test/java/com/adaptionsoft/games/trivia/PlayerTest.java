@@ -26,4 +26,16 @@ public class PlayerTest {
         player.addGoldCoin();
         assertEquals(player.addGoldCoin(), 2);
     }
+
+    @Test
+    public void givenNewPlayer_whenAdd7GoldCoins_thenGoldenCoinsIs7() {
+        Player player = new Player("Will", 1);
+        player.addGoldCoin();
+        player.addGoldCoin();
+        player.addGoldCoin();
+        player.addGoldCoin();
+        player.addGoldCoin();
+        player.addGoldCoin();
+        assertEquals(player.addGoldCoin(), 7);
+    }
 }
