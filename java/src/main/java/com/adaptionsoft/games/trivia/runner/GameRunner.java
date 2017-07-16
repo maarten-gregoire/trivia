@@ -10,7 +10,7 @@ public class GameRunner {
 	private static boolean notAWinner;
 	private static Random rand = new Random();
 
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		Game game = createGameWithPlayers("Chet", "Pat", "Sue");
 
 		do {
@@ -33,9 +33,6 @@ public class GameRunner {
 		for (String player: players){
 			game.add(player);
 		}
-		game.add("Chet");
-		game.add("Pat");
-		game.add("Sue");
 		return game;
 	}
 
