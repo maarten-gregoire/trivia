@@ -12,7 +12,7 @@ public abstract class ConsoleOutputTest {
 
     String PLAYER1_NAME = "Bart";
 
-    private final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+    final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
 
     @Rule
     public ExpectedException expectException = ExpectedException.none();
