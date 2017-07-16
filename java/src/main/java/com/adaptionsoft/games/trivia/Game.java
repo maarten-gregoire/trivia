@@ -144,7 +144,7 @@ public class Game {
 
     private void printGoldCoinsLine() {
         System.out.println(
-                String.format(GOLD_COINS_LINE, currentPlayer.getName(), goldCoins[currentPlayer.getNumber()] ));
+                String.format(GOLD_COINS_LINE, currentPlayer.getName(), currentPlayer.getGoldCoins() ));
     }
 
     private void findCurrentPlayer() {
