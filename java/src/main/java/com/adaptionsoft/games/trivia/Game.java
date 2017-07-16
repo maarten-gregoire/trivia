@@ -79,7 +79,7 @@ public class Game {
 
                 System.out.println(currentPlayer.getName()
                         + "'s new location is "
-                        + positions[currentPlayer.getNumber()]);
+                        + currentPlayer.getLocation());
                 System.out.println("The category is " + getCurrentCategory());
                 askQuestion();
             } else {
@@ -112,7 +112,7 @@ public class Game {
     }
 
     private String getCurrentCategory() {
-        switch (positions[currentPlayer.getNumber()] % 4) {
+        switch (currentPlayer.getLocation() % 4) {
             case 0:
                 return "Pop";
             case 1:
