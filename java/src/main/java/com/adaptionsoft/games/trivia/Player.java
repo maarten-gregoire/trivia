@@ -7,6 +7,10 @@ public class Player {
         this.name = name;
     }
 
+    public static Player aPlayer(String name) {
+        return new Player(name);
+    }
+
     public String getName() {
         return name;
     }
