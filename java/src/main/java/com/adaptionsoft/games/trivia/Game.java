@@ -8,7 +8,7 @@ import static com.adaptionsoft.games.trivia.Player.aPlayer;
 public class Game {
     ArrayList<Player> players = new ArrayList<>();
     int[] positions = new int[6];
-    int[] purses  = new int[6];
+    int[] goldCoins = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
@@ -18,6 +18,8 @@ public class Game {
 
     Player currentPlayer;
     boolean isGettingOutOfPenaltyBox;
+    private String ANSWER_WAS_CORRECT_LINE = "Answer was correct!!!!";
+    private String GOLD_COINS_LINE = "%s now has %s Gold Coins.";
 
     public  Game(){
         for (int i = 0; i < 50; i++) {
@@ -40,7 +42,7 @@ public class Game {
 
         players.add(aPlayer(playerName, players.size()));
         positions[getNumberOfPlayers()] = 0;
-        purses[getNumberOfPlayers()] = 0;
+        goldCoins[getNumberOfPlayers()] = 0;
         inPenaltyBox[getNumberOfPlayers()] = false;
 
         System.out.println(playerName + " was added");
@@ -118,28 +120,30 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         }
-        if (inPenaltyBox[currentPlayer.getNumber()] && isGettingOutOfPenaltyBox) {
-                System.out.println("Answer was correct!!!!");
-                purses[currentPlayer.getNumber()]++;
-                System.out.println(players.get(currentPlayer.getNumber()).getName()
-                        + " now has "
-                        + purses[currentPlayer.getNumber()]
-                        + " Gold Coins.");
+        printAnswerWasCorrectLine();
 
-        } else {
-            System.out.println("Answer was correct!!!!");
-            purses[currentPlayer.getNumber()]++;
-            System.out.println(currentPlayer.getName()
-                    + " now has "
-                    + purses[currentPlayer.getNumber()]
-                    + " Gold Coins.");
+        addGoldCoinForCurrentPlayer();
 
-        }
-        boolean winner = isPlayerWinner();
+        printGoldCoinsLine();
+
+        boolean noWinnerYet = isPlayerNotTheWinner();
 
         findCurrentPlayer();
 
-        return winner;
+        return noWinnerYet;
+    }
+
+    private void addGoldCoinForCurrentPlayer() {
+        goldCoins[currentPlayer.getNumber()]++;
+    }
+
+    private void printAnswerWasCorrectLine() {
+        System.out.println(ANSWER_WAS_CORRECT_LINE);
+    }
+
+    private void printGoldCoinsLine() {
+        System.out.println(
+                String.format(GOLD_COINS_LINE, currentPlayer.getName(), goldCoins[currentPlayer.getNumber()] ));
     }
 
     private void findCurrentPlayer() {
@@ -165,7 +169,7 @@ public class Game {
         return true;
     }
 
-    private boolean isPlayerWinner() {
-        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(purses[currentPlayer.getNumber()] == 6);
+    private boolean isPlayerNotTheWinner() {
+        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(goldCoins[currentPlayer.getNumber()] == 6);
     }
 }
