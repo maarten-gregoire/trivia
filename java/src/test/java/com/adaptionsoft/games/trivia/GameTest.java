@@ -980,6 +980,288 @@ public class GameTest extends ConsoleOutputTest {
         game.giveCorrectAnswer();
     }
 
+    @Test
+    public void givenGameWithOnePlayers_whenGive1CorrectAnswer_thenGoldCoinsIsOne() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 1 Gold Coins.";
+        String actualOutput = getLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive2CorrectAnswer_thenGoldCoinsIsTwo() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 2 Gold Coins.";
+        String actualOutput = getLineFromConsole(5);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive3CorrectAnswer_thenGoldCoinsIsThree() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 3 Gold Coins.";
+        String actualOutput = getLineFromConsole(7);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive4CorrectAnswer_thenGoldCoinsIsFour() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 4 Gold Coins.";
+        String actualOutput = getLineFromConsole(9);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive5CorrectAnswer_thenGoldCoinsIsFive() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 5 Gold Coins.";
+        String actualOutput = getLineFromConsole(11);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive6CorrectAnswers_thenGoldCoinsIsSix() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 6 Gold Coins.";
+        String actualOutput = getLineFromConsole(13);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithOnePlayers_whenGive7CorrectAnswers_thenGoldCoinsIsSeven() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " now has 7 Gold Coins.";
+        String actualOutput = getLineFromConsole(15);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives1CorrectAnswers_thenGoldCoinsIsOne() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 1 Gold Coins.";
+        String actualOutput = getLineFromConsole(17);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives2CorrectAnswers_thenGoldCoinsIsTwo() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 2 Gold Coins.";
+        String actualOutput = getLineFromConsole(31);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives3CorrectAnswers_thenGoldCoinsIsThree() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 3 Gold Coins.";
+        String actualOutput = getLineFromConsole(45);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives4CorrectAnswers_thenGoldCoinsIsFour() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 4 Gold Coins.";
+        String actualOutput = getLineFromConsole(59);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives5CorrectAnswers_thenGoldCoinsIsFive() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 5 Gold Coins.";
+        String actualOutput = getLineFromConsole(73);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives6CorrectAnswers_thenGoldCoinsIsSix() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " now has 6 Gold Coins.";
+        String actualOutput = getLineFromConsole(87);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithTwoPlayers_whenPlayer2Gives6CorrectAnswersWithWrongAnswersInBetween_thenGoldCoinsIsSix() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        String expectedOutput = PLAYER2_NAME + " now has 6 Gold Coins.";
+        String actualOutput = getLineFromConsole(127);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
     private String getPlayerAddedLineFromConsole(int playerNumber) {
         return getLineFromConsole(2 * (playerNumber - 1));
     }
