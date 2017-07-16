@@ -128,18 +128,9 @@ public class Game {
                         + purses[currentPlayer.getNumber()]
                         + " Gold Coins.");
                 winner = isPlayerWinner();
-
-                int currentPlayerNumber = currentPlayer.getNumber()+1;
-                if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
-                currentPlayer = players.get(currentPlayerNumber);
-
             } else {
-                int currentPlayerNumber = currentPlayer.getNumber()+1;
-                if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
-                currentPlayer = players.get(currentPlayerNumber);
                 winner = true;
             }
-
         } else {
             System.out.println("Answer was correct!!!!");
             purses[currentPlayer.getNumber()]++;
@@ -149,12 +140,19 @@ public class Game {
                     + " Gold Coins.");
 
             winner = isPlayerWinner();
-
-            int currentPlayerNumber = currentPlayer.getNumber()+1;
-            if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
-            currentPlayer = players.get(currentPlayerNumber);
         }
+
+        findCurrentPlayer();
+
         return winner;
+    }
+
+    private void findCurrentPlayer() {
+        if (currentPlayer.getNumber()+1 == players.size()) {
+            currentPlayer = players.get(0);
+        } else {
+            currentPlayer = players.get(currentPlayer.getNumber()+1);
+        }
     }
 
     public boolean giveWrongAnswer(){
