@@ -118,19 +118,14 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         }
-        boolean winner = false;
-        if (inPenaltyBox[currentPlayer.getNumber()]){
-            if (isGettingOutOfPenaltyBox) {
+        if (inPenaltyBox[currentPlayer.getNumber()] && isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
                 purses[currentPlayer.getNumber()]++;
                 System.out.println(players.get(currentPlayer.getNumber()).getName()
                         + " now has "
                         + purses[currentPlayer.getNumber()]
                         + " Gold Coins.");
-                winner = isPlayerWinner();
-            } else {
-                winner = true;
-            }
+
         } else {
             System.out.println("Answer was correct!!!!");
             purses[currentPlayer.getNumber()]++;
@@ -139,8 +134,8 @@ public class Game {
                     + purses[currentPlayer.getNumber()]
                     + " Gold Coins.");
 
-            winner = isPlayerWinner();
         }
+        boolean winner = isPlayerWinner();
 
         findCurrentPlayer();
 
@@ -171,6 +166,6 @@ public class Game {
     }
 
     private boolean isPlayerWinner() {
-        return !(purses[currentPlayer.getNumber()] == 6);
+        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(purses[currentPlayer.getNumber()] == 6);
     }
 }
