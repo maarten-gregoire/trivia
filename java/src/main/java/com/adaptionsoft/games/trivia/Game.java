@@ -171,6 +171,6 @@ public class Game {
     }
 
     private boolean isPlayerNotTheWinner() {
-        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(goldCoins[currentPlayer.getNumber()] == 6);
+        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(currentPlayer.getGoldCoins() == 6);
     }
 }
