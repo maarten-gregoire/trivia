@@ -7,7 +7,6 @@ import static com.adaptionsoft.games.trivia.Player.aPlayer;
 
 public class Game {
     ArrayList<Player> players = new ArrayList<>();
-    int[] positions = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
@@ -42,7 +41,6 @@ public class Game {
     public void add(String playerName) {
 
         players.add(aPlayer(playerName, players.size()));
-        positions[getNumberOfPlayers()] = 0;
         inPenaltyBox[getNumberOfPlayers()] = false;
 
         printPlayerNameLine(playerName);
@@ -73,8 +71,6 @@ public class Game {
                 isGettingOutOfPenaltyBox = true;
 
                 System.out.println(currentPlayer.getName() + " is getting out of the penalty box");
-                positions[currentPlayer.getNumber()] = positions[currentPlayer.getNumber()] + roll;
-                if (positions[currentPlayer.getNumber()] > 11) positions[currentPlayer.getNumber()] = positions[currentPlayer.getNumber()] - 12;
                 currentPlayer.addToLocation(roll);
 
                 System.out.println(currentPlayer.getName()
@@ -89,8 +85,6 @@ public class Game {
 
         } else {
             currentPlayer.addToLocation(roll);
-            positions[currentPlayer.getNumber()] = positions[currentPlayer.getNumber()] + roll;
-            if (positions[currentPlayer.getNumber()] > 11) positions[currentPlayer.getNumber()] = positions[currentPlayer.getNumber()] - 12;
 
             System.out.println(currentPlayer.getName()
                     + "'s new location is "
