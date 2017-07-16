@@ -135,6 +135,7 @@ public class Game {
 
     private void addGoldCoinForCurrentPlayer() {
         goldCoins[currentPlayer.getNumber()]++;
+        currentPlayer.addGoldCoin();
     }
 
     private void printAnswerWasCorrectLine() {
