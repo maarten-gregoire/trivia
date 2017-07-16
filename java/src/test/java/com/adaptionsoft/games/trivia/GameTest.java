@@ -960,6 +960,26 @@ public class GameTest extends ConsoleOutputTest {
         assertEquals(expectedOutput, actualOutput);
     }
 
+    @Test
+    public void givenGameWithOnePlayer_whenGiveCorrectAnswer_thenOutputCorrectLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveCorrectAnswer();
+
+        String expectedOutput = "Answer was correct!!!!";
+        String actualOutput = getLineFromConsole(2);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithNoPlayers_whenGiveCorrectAnswer_thenThrowException() {
+        Game game = createGameWithPlayers();
+
+        expectException.expect(IndexOutOfBoundsException.class);
+
+        game.giveCorrectAnswer();
+    }
+
     private String getPlayerAddedLineFromConsole(int playerNumber) {
         return getLineFromConsole(2 * (playerNumber - 1));
     }
