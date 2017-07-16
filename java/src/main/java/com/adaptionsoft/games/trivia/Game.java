@@ -106,6 +106,7 @@ public class Game {
     }
 
     private String getCurrentCategory() {
+        if (currentPlayer.getLocation() >= 12) return "Rock";
         switch (currentPlayer.getLocation() % 4) {
             case 0:
                 return "Pop";

@@ -1,5 +1,7 @@
 package com.adaptionsoft.games.trivia;
 
+import static com.adaptionsoft.games.trivia.Category.*;
+
 public class Player {
     private String name;
     private int number;
@@ -43,5 +45,19 @@ public class Player {
             location = location - 12;
         }
         return location;
+    }
+
+    public Category getCurrentCategory() {
+        if (location >= 12) return ROCK;
+        switch (location % 4) {
+            case 0:
+                return POP;
+            case 1:
+                return SCIENCE;
+            case 2:
+                return SPORTS;
+            default:
+                return ROCK;
+        }
     }
 }

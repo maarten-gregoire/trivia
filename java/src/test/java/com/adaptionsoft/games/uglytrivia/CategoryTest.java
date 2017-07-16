@@ -83,6 +83,12 @@ public class CategoryTest extends ConsoleOutputTest {
         assertCategoryEquals(ROCK);
     }
 
+    @Test
+    public void givenPlayer_whenInLocation12AfterRoll_thenCurrentCategoryIsRock() {
+        createGameWithLocationAfterRoll(12);
+        assertCategoryEquals(ROCK);
+    }
+
     private void assertLocationEquals(int location) {
         String expectedOutputForLocationLine = PLAYER1_NAME + "'s new location is " + location;
         String actualOutputForLocationLine = getLocationLineFromConsole();
@@ -105,10 +111,14 @@ public class CategoryTest extends ConsoleOutputTest {
         return outputLines[5];
     }
 
-    private void createGameWithLocationAfterRoll(int roll) {
+    private void createGameWithLocationAfterRoll(int location) {
+        int roll = location;
+        if (location >= 12) {
+            roll += 12;
+        }
         createGameWithPlayersAndRoll(roll, PLAYER1_NAME);
 
-        assertLocationEquals(roll);
+        assertLocationEquals(location);
     }
 
 }
