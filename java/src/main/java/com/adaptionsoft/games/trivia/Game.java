@@ -22,7 +22,7 @@ public class Game {
     private String PLAYER_ADDED_LINE = "%s was added";
     private String PLAYER_NUMBER_LINE = "They are player number %s";
 
-    public  Game(){
+    public Game(){
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
             scienceQuestions.addLast(("Science Question " + i));
