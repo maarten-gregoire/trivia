@@ -192,6 +192,7 @@ public class Game {
 
         printSentToPenaltyBoxLine();
         inPenaltyBox[currentPlayer.getNumber()] = true;
+        currentPlayer.sendToPenaltyBox();
 
         findCurrentPlayer();
 
