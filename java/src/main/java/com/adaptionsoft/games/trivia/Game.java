@@ -49,22 +49,12 @@ public class Game {
         printPlayerNumberLine();
     }
 
-    private void printPlayerNumberLine() {
-        System.out.println(String.format(PLAYER_NUMBER_LINE, players.size()));
-    }
-
-    private void printPlayerNameLine(String playerName) {
-        System.out.println(String.format(PLAYER_ADDED_LINE, playerName));
-    }
-
     public int getNumberOfPlayers() {
         return players.size();
     }
 
     public void roll(int roll) {
-        if (currentPlayer == null) {
-            currentPlayer = players.get(0);
-        }
+        setFirstCurrentPlayerIfNotSet();
         printCurrentPlayerLine();
         printRolledLine(roll);
 
@@ -75,6 +65,12 @@ public class Game {
             printLocationLine();
             printCategoryLine();
             askQuestion();
+        }
+    }
+
+    private void setFirstCurrentPlayerIfNotSet() {
+        if (currentPlayer == null) {
+            currentPlayer = players.get(0);
         }
     }
 
@@ -100,6 +96,81 @@ public class Game {
         return roll % 2 != 0;
     }
 
+    private void askQuestion() {
+        if (getCurrentCategory() == "Pop")
+            System.out.println(popQuestions.removeFirst());
+        if (getCurrentCategory() == "Science")
+            System.out.println(scienceQuestions.removeFirst());
+        if (getCurrentCategory() == "Sports")
+            System.out.println(sportsQuestions.removeFirst());
+        if (getCurrentCategory() == "Rock")
+            System.out.println(rockQuestions.removeFirst());
+    }
+
+    private String getCurrentCategory() {
+        return currentPlayer.getCurrentCategory().getText();
+    }
+
+    public boolean giveCorrectAnswer() {
+        setFirstCurrentPlayerIfNotSet();
+        printAnswerWasCorrectLine();
+        addGoldCoinForCurrentPlayer();
+        printGoldCoinsLine();
+        boolean noWinnerYet = isPlayerNotTheWinner();
+        findCurrentPlayer();
+        return noWinnerYet;
+    }
+
+    private void addGoldCoinForCurrentPlayer() {
+        currentPlayer.addGoldCoin();
+    }
+
+    private void findCurrentPlayer() {
+        if (currentPlayer.getNumber()+1 == players.size()) {
+            currentPlayer = players.get(0);
+        } else {
+            currentPlayer = players.get(currentPlayer.getNumber()+1);
+        }
+    }
+
+    public boolean giveWrongAnswer(){
+        setFirstCurrentPlayerIfNotSet();
+        printIncorrectAnswerLine();
+        printSentToPenaltyBoxLine();
+        currentPlayer.sendToPenaltyBox();
+        findCurrentPlayer();
+        return true;
+    }
+
+    private boolean isPlayerNotTheWinner() {
+        return !(currentPlayer.getGoldCoins() == 6);
+    }
+
+    private void printSentToPenaltyBoxLine() {
+        System.out.println(String.format(SENT_TO_PENALTY_BOX_LINE, currentPlayer.getName()));
+    }
+
+    private void printIncorrectAnswerLine() {
+        System.out.println(INCORRECT_ANSWER_LINE);
+    }
+
+    private void printGoldCoinsLine() {
+        System.out.println(
+                String.format(GOLD_COINS_LINE, currentPlayer.getName(), currentPlayer.getGoldCoins() ));
+    }
+
+    private void printAnswerWasCorrectLine() {
+        System.out.println(ANSWER_WAS_CORRECT_LINE);
+    }
+
+    private void printPlayerNumberLine() {
+        System.out.println(String.format(PLAYER_NUMBER_LINE, players.size()));
+    }
+
+    private void printPlayerNameLine(String playerName) {
+        System.out.println(String.format(PLAYER_ADDED_LINE, playerName));
+    }
+
     private void printNotOutOfPenaltyBoxLine() {
         System.out.println(String.format(DOES_NOT_GET_OUT_OF_PENALTY_BOX_LINE, currentPlayer.getName()));
     }
@@ -119,90 +190,11 @@ public class Game {
     private void printLocationLine() {
         System.out.println(
                 String.format(LOCATION_LINE,
-                currentPlayer.getName(),
-                currentPlayer.getLocation()));
+                        currentPlayer.getName(),
+                        currentPlayer.getLocation()));
     }
 
     private void printCurrentPlayerLine() {
         System.out.println(String.format(CURRENT_PLAYER_LINE, currentPlayer.getName()));
-    }
-
-    private void askQuestion() {
-        if (getCurrentCategory() == "Pop")
-            System.out.println(popQuestions.removeFirst());
-        if (getCurrentCategory() == "Science")
-            System.out.println(scienceQuestions.removeFirst());
-        if (getCurrentCategory() == "Sports")
-            System.out.println(sportsQuestions.removeFirst());
-        if (getCurrentCategory() == "Rock")
-            System.out.println(rockQuestions.removeFirst());
-    }
-
-    private String getCurrentCategory() {
-        return currentPlayer.getCurrentCategory().getText();
-    }
-
-    public boolean giveCorrectAnswer() {
-        if (currentPlayer == null) {
-            currentPlayer = players.get(0);
-        }
-        printAnswerWasCorrectLine();
-
-        addGoldCoinForCurrentPlayer();
-
-        printGoldCoinsLine();
-
-        boolean noWinnerYet = isPlayerNotTheWinner();
-
-        findCurrentPlayer();
-
-        return noWinnerYet;
-    }
-
-    private void addGoldCoinForCurrentPlayer() {
-        currentPlayer.addGoldCoin();
-    }
-
-    private void printAnswerWasCorrectLine() {
-        System.out.println(ANSWER_WAS_CORRECT_LINE);
-    }
-
-    private void printGoldCoinsLine() {
-        System.out.println(
-                String.format(GOLD_COINS_LINE, currentPlayer.getName(), currentPlayer.getGoldCoins() ));
-    }
-
-    private void findCurrentPlayer() {
-        if (currentPlayer.getNumber()+1 == players.size()) {
-            currentPlayer = players.get(0);
-        } else {
-            currentPlayer = players.get(currentPlayer.getNumber()+1);
-        }
-    }
-
-    public boolean giveWrongAnswer(){
-        if (currentPlayer == null) {
-            currentPlayer = players.get(0);
-        }
-        printIncorrectAnswerLine();
-
-        printSentToPenaltyBoxLine();
-        currentPlayer.sendToPenaltyBox();
-
-        findCurrentPlayer();
-
-        return true;
-    }
-
-    private void printSentToPenaltyBoxLine() {
-        System.out.println(String.format(SENT_TO_PENALTY_BOX_LINE, currentPlayer.getName()));
-    }
-
-    private void printIncorrectAnswerLine() {
-        System.out.println(INCORRECT_ANSWER_LINE);
-    }
-
-    private boolean isPlayerNotTheWinner() {
-        return !(currentPlayer.getGoldCoins() == 6);
     }
 }
