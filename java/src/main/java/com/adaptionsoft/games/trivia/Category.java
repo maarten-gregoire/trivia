@@ -26,5 +26,4 @@ enum Category {
                 .filter(category -> (category.getLocation() == (location % 4) && (location < 12)))
                 .findFirst().orElse(ROCK);
     }
-
 }

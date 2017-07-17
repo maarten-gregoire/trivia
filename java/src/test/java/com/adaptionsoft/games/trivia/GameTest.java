@@ -981,6 +981,26 @@ public class GameTest extends ConsoleOutputTest {
     }
 
     @Test
+    public void givenGameWithOnePlayer_whenGiveWrongAnswer_thenOutputCorrectLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+        game.giveWrongAnswer();
+
+        String expectedOutput = "Question was incorrectly answered";
+        String actualOutput = getLineFromConsole(2);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenGameWithNoPlayers_whenGiveWrongAnswer_thenThrowException() {
+        Game game = createGameWithPlayers();
+
+        expectException.expect(IndexOutOfBoundsException.class);
+
+        game.giveWrongAnswer();
+    }
+
+    @Test
     public void givenGameWithOnePlayers_whenGive1CorrectAnswer_thenGoldCoinsIsOne() {
         Game game = createGameWithPlayers(PLAYER1_NAME);
         game.giveCorrectAnswer();
