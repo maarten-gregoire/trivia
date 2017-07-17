@@ -7,12 +7,14 @@ public class Player {
     private int number;
     private int goldCoins;
     private int location;
+    private boolean inPenaltyBox;
 
     public Player(String name, int number) {
         this.name = name;
         this.number = number;
         this.goldCoins = 0;
         this.location = 0;
+        this.inPenaltyBox = false;
     }
 
     public static Player aPlayer(String name, int number) {
@@ -49,5 +51,17 @@ public class Player {
 
     public Category getCurrentCategory() {
         return getCategory(location);
+    }
+
+    public boolean isInPenaltyBox() {
+        return inPenaltyBox;
+    }
+
+    public void sendToPenaltyBox() {
+        this.inPenaltyBox = true;
+    }
+
+    public void getOutOfPenaltyBox() {
+        this.inPenaltyBox = false;
     }
 }
