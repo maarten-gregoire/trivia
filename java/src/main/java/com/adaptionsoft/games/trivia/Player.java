@@ -48,16 +48,6 @@ public class Player {
     }
 
     public Category getCurrentCategory() {
-        if (location >= 12) return ROCK;
-        switch (location % 4) {
-            case 0:
-                return POP;
-            case 1:
-                return SCIENCE;
-            case 2:
-                return SPORTS;
-            default:
-                return ROCK;
-        }
+        return getCategory(location);
     }
 }

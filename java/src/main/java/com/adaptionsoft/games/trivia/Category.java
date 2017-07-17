@@ -1,7 +1,9 @@
 package com.adaptionsoft.games.trivia;
 
+import static java.util.Arrays.stream;
+
 enum Category {
-    POP(1, "Pop"), SCIENCE(2, "Science"), SPORTS(3, "Sports"), ROCK(4, "Rock");
+    POP(0, "Pop"), SCIENCE(1, "Science"), SPORTS(2, "Sports"), ROCK(3, "Rock");
 
     int location;
     String text;
@@ -18,4 +20,11 @@ enum Category {
     public String getText() {
         return text;
     }
+
+    public static Category getCategory(int location) {
+        return stream(Category.values())
+                .filter(category -> (category.getLocation() == (location % 4) && (location < 12)))
+                .findFirst().orElse(ROCK);
+    }
+
 }

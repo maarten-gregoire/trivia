@@ -174,4 +174,20 @@ public class PlayerTest {
         assertEquals(ROCK, player.getCurrentCategory());
     }
 
+    @Test
+    public void givenPlayerGivenLocation12_thenCategoryIsRock() {
+        Player player = aPlayer("Jan", 1);
+        player.addToLocation(24);
+
+        assertEquals(ROCK, player.getCurrentCategory());
+    }
+
+    @Test
+    public void givenPlayerGivenLocation13_thenCategoryIsRock() {
+        Player player = aPlayer("Jan", 1);
+        player.addToLocation(25);
+
+        assertEquals(ROCK, player.getCurrentCategory());
+    }
+
 }
