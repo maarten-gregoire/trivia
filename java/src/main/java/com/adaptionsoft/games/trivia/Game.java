@@ -24,6 +24,7 @@ public class Game {
     private String CATEGORY_LINE = "The category is %s";
     private String LOCATION_LINE = "%s's new location is %s";
     private String CURRENT_PLAYER_LINE = "%s is the current player";
+    private String ROLLED_LINE = "They have rolled a %s";
 
     public Game(){
         for (int i = 0; i < 50; i++) {
@@ -69,8 +70,7 @@ public class Game {
         }
         printCurrentPlayerLine();
 
-        System.out.println("They have rolled a " + roll);
-
+        printRolledLine(roll);
         if (inPenaltyBox[currentPlayer.getNumber()]) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
@@ -88,6 +88,10 @@ public class Game {
             printCategoryLine();
             askQuestion();
         }
+    }
+
+    private void printRolledLine(int roll) {
+        System.out.println(String.format(ROLLED_LINE, roll));
     }
 
     private void printCategoryLine() {

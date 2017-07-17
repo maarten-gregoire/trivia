@@ -5,6 +5,7 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GameTest extends ConsoleOutputTest {
@@ -70,6 +71,224 @@ public class GameTest extends ConsoleOutputTest {
 
         String expectedOutput = "They have rolled a 6";
         String actualOutput = getLineFromConsole(10);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayer_whenWrongAnswer_thenGetInPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " was sent to the penalty box";
+        String actualOutput = getLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayer_whenCorrectAnswer_thenDoNotGetInPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " was sent to the penalty box";
+        String actualOutput = getLineFromConsole(3);
+
+        assertNotEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayer_whenWrongAnswer_thenGetInPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.giveWrongAnswer();
+
+        String expectedOutput = PLAYER2_NAME + " was sent to the penalty box";
+        String actualOutput = getLineFromConsole(7);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayer_whenCorrectAnswer_thenDoNotGetInPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.giveCorrectAnswer();
+
+        String expectedOutput = PLAYER1_NAME + " was sent to the penalty box";
+        String actualOutput = getLineFromConsole(7);
+
+        assertNotEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerInPenaltyBox_whenRoll1_thenGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER1_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(6);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerInPenaltyBox_whenRoll2_thenDoesNotGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(2);
+
+        String expectedOutput = PLAYER1_NAME + " is not getting out of the penalty box";
+        String actualOutput = getLineFromConsole(6);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerInPenaltyBoxForTwoTurns_whenRoll5_thenGetsOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(2);
+        game.roll(2);
+        game.roll(5);
+
+
+        String expectedOutput = PLAYER1_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(12);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerInPenaltyBox_whenRoll3_thenGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(3);
+
+        String expectedOutput = PLAYER1_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(6);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerInPenaltyBox_whenRoll4_thenDoesNotGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(4);
+
+        String expectedOutput = PLAYER1_NAME + " is not getting out of the penalty box";
+        String actualOutput = getLineFromConsole(6);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayerNotInPenaltyBox_whenRoll4_thenDoesNotGetOutOfPenaltyBoxAndDoesNotPrintIt() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.giveCorrectAnswer();
+        game.roll(4);
+
+        String expectedOutput = PLAYER1_NAME + " is not getting out of the penalty box";
+        String actualOutput = getLineFromConsole(6);
+
+        assertNotEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayerInPenaltyBox_whenRoll1_thenGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+
+        String expectedOutput = PLAYER2_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(23);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayerInPenaltyBox_whenRoll2_thenDoesNotGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(2);
+
+        String expectedOutput = PLAYER2_NAME + " is not getting out of the penalty box";
+        String actualOutput = getLineFromConsole(23);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayerInPenaltyBox_whenRoll3_thenGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(3);
+
+        String expectedOutput = PLAYER2_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(23);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+
+    @Test
+    public void givenSecondPlayerNotInPenaltyBox_whenRoll3_thenDoesNotGetOutOfPenaltyBoxAndDoesNotPrintIt() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(3);
+
+        String expectedOutput = PLAYER2_NAME + " is getting out of the penalty box";
+        String actualOutput = getLineFromConsole(23);
+
+        assertNotEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayerInPenaltyBox_whenRoll4_thenDoesNotGetOutOfPenaltyBox() {
+        Game game = createGameWithPlayers(PLAYER1_NAME,PLAYER2_NAME);
+
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveWrongAnswer();
+        game.roll(1);
+        game.giveCorrectAnswer();
+        game.roll(4);
+
+
+        String expectedOutput = PLAYER2_NAME + " is not getting out of the penalty box";
+        String actualOutput = getLineFromConsole(23);
 
         assertEquals(expectedOutput, actualOutput);
     }
