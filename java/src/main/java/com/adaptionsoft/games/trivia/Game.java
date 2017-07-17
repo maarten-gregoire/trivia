@@ -74,7 +74,7 @@ public class Game {
         printCurrentPlayerLine();
 
         printRolledLine(roll);
-        if (inPenaltyBox[currentPlayer.getNumber()]) {
+        if (currentPlayer.isInPenaltyBox()) {
             if (isOddNumber(roll)) {
                 getOutOfPenaltyBox();
             } else {
@@ -82,7 +82,7 @@ public class Game {
             }
         }
 
-        if (!inPenaltyBox[currentPlayer.getNumber()] || (isOddNumber(roll))) {
+        if (!currentPlayer.isInPenaltyBox() || (isOddNumber(roll))) {
             currentPlayer.addToLocation(roll);
             printLocationLine();
             printCategoryLine();
@@ -208,6 +208,6 @@ public class Game {
     }
 
     private boolean isPlayerNotTheWinner() {
-        return inPenaltyBox[currentPlayer.getNumber()] && !isGettingOutOfPenaltyBox || !(currentPlayer.getGoldCoins() == 6);
+        return currentPlayer.isInPenaltyBox() && !isGettingOutOfPenaltyBox || !(currentPlayer.getGoldCoins() == 6);
     }
 }
