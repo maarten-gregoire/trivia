@@ -21,6 +21,9 @@ public class Game {
     private String PLAYER_ADDED_LINE = "%s was added";
     private String PLAYER_NUMBER_LINE = "They are player number %s";
     private String INCORRECT_ANSWER_LINE = "Question was incorrectly answered";
+    private String CATEGORY_LINE = "The category is %s";
+    private String LOCATION_LINE = "%s's new location is %s";
+    private String CURRENT_PLAYER_LINE = "%s is the current player";
 
     public Game(){
         for (int i = 0; i < 50; i++) {
@@ -64,35 +67,42 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         }
-        System.out.println(currentPlayer.getName() + " is the current player");
+        printCurrentPlayerLine();
+
         System.out.println("They have rolled a " + roll);
 
         if (inPenaltyBox[currentPlayer.getNumber()]) {
             if (roll % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
-
                 System.out.println(currentPlayer.getName() + " is getting out of the penalty box");
-                currentPlayer.addToLocation(roll);
 
-                System.out.println(currentPlayer.getName()
-                        + "'s new location is "
-                        + currentPlayer.getLocation());
-                System.out.println("The category is " + getCurrentCategory());
-                askQuestion();
             } else {
                 System.out.println(currentPlayer.getName() + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
             }
+        }
 
-        } else {
+        if (!inPenaltyBox[currentPlayer.getNumber()] || (roll % 2 != 0)) {
             currentPlayer.addToLocation(roll);
-
-            System.out.println(currentPlayer.getName()
-                    + "'s new location is "
-                    + currentPlayer.getLocation());
-            System.out.println("The category is " + getCurrentCategory());
+            printLocationLine();
+            printCategoryLine();
             askQuestion();
         }
+    }
+
+    private void printCategoryLine() {
+        System.out.println(String.format(CATEGORY_LINE, getCurrentCategory()));
+    }
+
+    private void printLocationLine() {
+        System.out.println(
+                String.format(LOCATION_LINE,
+                currentPlayer.getName(),
+                currentPlayer.getLocation()));
+    }
+
+    private void printCurrentPlayerLine() {
+        System.out.println(String.format(CURRENT_PLAYER_LINE, currentPlayer.getName()));
     }
 
     private void askQuestion() {
