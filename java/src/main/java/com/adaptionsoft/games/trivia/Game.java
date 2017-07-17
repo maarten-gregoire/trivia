@@ -3,7 +3,7 @@ package com.adaptionsoft.games.trivia;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static com.adaptionsoft.games.trivia.Player.aPlayer;
+import static com.adaptionsoft.games.trivia.Player.player;
 
 public class Game {
     ArrayList<Player> players = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Game {
 
     public void add(String playerName) {
 
-        players.add(aPlayer(playerName, players.size()));
+        players.add(player(playerName, players.size()));
         inPenaltyBox[getNumberOfPlayers()] = false;
 
         printPlayerNameLine(playerName);

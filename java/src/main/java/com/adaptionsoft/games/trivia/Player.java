@@ -17,7 +17,7 @@ public class Player {
         this.inPenaltyBox = false;
     }
 
-    public static Player aPlayer(String name, int number) {
+    public static Player player(String name, int number) {
         return new Player(name, number);
     }
 

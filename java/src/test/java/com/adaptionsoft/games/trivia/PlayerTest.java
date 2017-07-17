@@ -3,7 +3,7 @@ package com.adaptionsoft.games.trivia;
 import org.junit.Test;
 
 import static com.adaptionsoft.games.trivia.Category.*;
-import static com.adaptionsoft.games.trivia.Player.aPlayer;
+import static com.adaptionsoft.games.trivia.Player.player;
 import static junit.framework.TestCase.assertEquals;
 
 public class PlayerTest {
@@ -80,7 +80,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation0_thenCategoryIsPop() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(0);
 
         assertEquals(POP, player.getCurrentCategory());
@@ -88,7 +88,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation1_thenCategoryIsScience() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(1);
 
         assertEquals(SCIENCE, player.getCurrentCategory());
@@ -96,7 +96,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation2_thenCategoryIsSports() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(2);
 
         assertEquals(SPORTS, player.getCurrentCategory());
@@ -104,7 +104,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation3_thenCategoryIsRock() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(3);
 
         assertEquals(ROCK, player.getCurrentCategory());
@@ -112,7 +112,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation4_thenCategoryIsPop() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(4);
 
         assertEquals(POP, player.getCurrentCategory());
@@ -120,7 +120,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation5_thenCategoryIsScience() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(5);
 
         assertEquals(SCIENCE, player.getCurrentCategory());
@@ -128,7 +128,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation6_thenCategoryIsSports() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(6);
 
         assertEquals(SPORTS, player.getCurrentCategory());
@@ -136,7 +136,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation7_thenCategoryIsRock() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(7);
 
         assertEquals(ROCK, player.getCurrentCategory());
@@ -144,7 +144,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation8_thenCategoryIsPop() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(8);
 
         assertEquals(POP, player.getCurrentCategory());
@@ -152,7 +152,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation9_thenCategoryIsScience() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(9);
 
         assertEquals(SCIENCE, player.getCurrentCategory());
@@ -160,7 +160,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation10_thenCategoryIsSports() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(10);
 
         assertEquals(SPORTS, player.getCurrentCategory());
@@ -168,7 +168,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation11_thenCategoryIsRock() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(11);
 
         assertEquals(ROCK, player.getCurrentCategory());
@@ -176,7 +176,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation12_thenCategoryIsRock() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(24);
 
         assertEquals(ROCK, player.getCurrentCategory());
@@ -184,7 +184,7 @@ public class PlayerTest {
 
     @Test
     public void givenPlayerGivenLocation13_thenCategoryIsRock() {
-        Player player = aPlayer("Jan", 1);
+        Player player = player("Jan", 1);
         player.addToLocation(25);
 
         assertEquals(ROCK, player.getCurrentCategory());

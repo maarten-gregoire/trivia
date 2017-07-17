@@ -2,13 +2,11 @@ package com.adaptionsoft.games.trivia;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public abstract class ConsoleOutputTest {
+public abstract class ConsoleOutputTest extends UnitTest{
 
     protected final String PLAYER1_NAME = "Bart";
     protected final String PLAYER2_NAME = "Harry";
@@ -19,9 +17,6 @@ public abstract class ConsoleOutputTest {
 
 
     final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
-
-    @Rule
-    public ExpectedException expectException = ExpectedException.none();
 
     @Before
     public void setUpStreams() {
