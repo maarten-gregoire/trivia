@@ -18,6 +18,63 @@ public class GameTest extends ConsoleOutputTest {
     }
 
     @Test
+    public void givenNoPlayers_whenRoll_thenThrowIndexOutOfBoundsException() {
+        expectException.expect(IndexOutOfBoundsException.class);
+        Game game = new Game();
+
+        game.roll(1);
+    }
+
+    @Test
+    public void givenOnePlayer_whenRoll1_thenShowRollLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.roll(1);
+
+        String expectedOutput = "They have rolled a 1";
+        String actualOutput = getLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayer_whenRoll6_thenShowRollLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.roll(6);
+
+        String expectedOutput = "They have rolled a 6";
+        String actualOutput = getLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenOnePlayer_whenRoll60_thenShowRollLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME);
+
+        game.roll(60);
+
+        String expectedOutput = "They have rolled a 60";
+        String actualOutput = getLineFromConsole(3);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void givenSecondPlayer_whenRoll6_thenShowRollLine() {
+        Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME);
+
+        game.roll(3);
+        game.roll(6);
+
+        String expectedOutput = "They have rolled a 6";
+        String actualOutput = getLineFromConsole(10);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
     public void givenFourPlayers_whenAddOnePlayer_thenHowManyPlayersIsFive() {
         Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME);
         game.add(PLAYER5_NAME);
