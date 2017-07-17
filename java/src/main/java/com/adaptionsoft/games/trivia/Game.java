@@ -25,6 +25,9 @@ public class Game {
     private String LOCATION_LINE = "%s's new location is %s";
     private String CURRENT_PLAYER_LINE = "%s is the current player";
     private String ROLLED_LINE = "They have rolled a %s";
+    private String GET_OUT_OF_PENALTY_BOX_LINE = "%s is getting out of the penalty box";
+    private String DOES_NOT_GET_OUT_OF_PENALTY_BOX_LINE = "%s is not getting out of the penalty box";
+    private String SENT_TO_PENALTY_BOX_LINE = "%s was sent to the penalty box";
 
     public Game(){
         for (int i = 0; i < 50; i++) {
@@ -72,22 +75,41 @@ public class Game {
 
         printRolledLine(roll);
         if (inPenaltyBox[currentPlayer.getNumber()]) {
-            if (roll % 2 != 0) {
-                isGettingOutOfPenaltyBox = true;
-                System.out.println(currentPlayer.getName() + " is getting out of the penalty box");
-
+            if (isOddNumber(roll)) {
+                getOutOfPenaltyBox();
             } else {
-                System.out.println(currentPlayer.getName() + " is not getting out of the penalty box");
-                isGettingOutOfPenaltyBox = false;
+                doNotGetOutOfPenaltyBox();
             }
         }
 
-        if (!inPenaltyBox[currentPlayer.getNumber()] || (roll % 2 != 0)) {
+        if (!inPenaltyBox[currentPlayer.getNumber()] || (isOddNumber(roll))) {
             currentPlayer.addToLocation(roll);
             printLocationLine();
             printCategoryLine();
             askQuestion();
         }
+    }
+
+    private void doNotGetOutOfPenaltyBox() {
+        printNotOutOfPenaltyBoxLine();
+        isGettingOutOfPenaltyBox = false;
+    }
+
+    private void getOutOfPenaltyBox() {
+        isGettingOutOfPenaltyBox = true;
+        printOutOfPenaltyBoxLine();
+    }
+
+    private boolean isOddNumber(int roll) {
+        return roll % 2 != 0;
+    }
+
+    private void printNotOutOfPenaltyBoxLine() {
+        System.out.println(String.format(DOES_NOT_GET_OUT_OF_PENALTY_BOX_LINE, currentPlayer.getName()));
+    }
+
+    private void printOutOfPenaltyBoxLine() {
+        System.out.println(String.format(GET_OUT_OF_PENALTY_BOX_LINE, currentPlayer.getName()));
     }
 
     private void printRolledLine(int roll) {
@@ -168,12 +190,16 @@ public class Game {
         }
         printIncorrectAnswerLine();
 
-        System.out.println(currentPlayer.getName() + " was sent to the penalty box");
+        printSentToPenaltyBoxLine();
         inPenaltyBox[currentPlayer.getNumber()] = true;
 
         findCurrentPlayer();
 
         return true;
+    }
+
+    private void printSentToPenaltyBoxLine() {
+        System.out.println(String.format(SENT_TO_PENALTY_BOX_LINE, currentPlayer.getName()));
     }
 
     private void printIncorrectAnswerLine() {
