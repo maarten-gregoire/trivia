@@ -1,13 +1,11 @@
 package com.adaptionsoft.games.trivia;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static com.adaptionsoft.games.trivia.Player.player;
 
 public class Game {
-    ArrayList<Player> players = new ArrayList<>();
-    boolean[] inPenaltyBox  = new boolean[6];
+    Players players = new Players();
 
     LinkedList popQuestions = new LinkedList();
     LinkedList scienceQuestions = new LinkedList();
@@ -49,7 +47,6 @@ public class Game {
     public void add(String playerName) {
 
         players.add(player(playerName, players.size()));
-        inPenaltyBox[getNumberOfPlayers()] = false;
 
         printPlayerNameLine(playerName);
         printPlayerNumberLine();
@@ -191,7 +188,6 @@ public class Game {
         printIncorrectAnswerLine();
 
         printSentToPenaltyBoxLine();
-        inPenaltyBox[currentPlayer.getNumber()] = true;
         currentPlayer.sendToPenaltyBox();
 
         findCurrentPlayer();

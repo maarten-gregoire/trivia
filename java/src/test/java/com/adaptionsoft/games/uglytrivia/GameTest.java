@@ -28,6 +28,13 @@ public class GameTest extends ConsoleOutputTest {
 	}
 
 	@Test
+	public void givenFivePlayers_whenAddOnePlayer_thenThrowException() {
+		Game game = createGameWithPlayers(PLAYER1_NAME, PLAYER2_NAME, PLAYER3_NAME, PLAYER4_NAME, PLAYER5_NAME);
+		expectException.expect(IndexOutOfBoundsException.class);
+		game.add(PLAYER6_NAME);
+	}
+
+	@Test
 	public void givenOnePlayer_whenOneCorrectAnswer_thenNotAWinnerTrue() {
 		Game game = new Game();
 		game.add("Ben");

@@ -15,7 +15,7 @@ public class Players {
     }
 
     public void add(Player player) {
-        if (size == 6) throw new IndexOutOfBoundsException();
+        if (size == 5) throw new IndexOutOfBoundsException();
         players.add(player);
         size++;
     }

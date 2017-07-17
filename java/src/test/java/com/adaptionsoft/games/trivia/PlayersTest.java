@@ -59,21 +59,19 @@ public class PlayersTest extends UnitTest{
     }
 
     @Test
-    public void givenSixPlayers_thenSizeIs6() {
+    public void givenFivePlayers_thenSizeIs6() {
         Players players = new Players();
         players.add(player("",1));
         players.add(player("",1));
         players.add(player("",1));
         players.add(player("",1));
         players.add(player("",1));
-        players.add(player("",1));
-        assertEquals(players.size(), 6);
+        assertEquals(players.size(), 5);
     }
 
     @Test
-    public void givenSixPlayers_whenAddingPlaye_thenThrowIndexOutOfBoundsException() {
+    public void givenFivePlayers_whenAddingPlayer_thenThrowIndexOutOfBoundsException() {
         Players players = new Players();
-        players.add(player("",1));
         players.add(player("",1));
         players.add(player("",1));
         players.add(player("",1));

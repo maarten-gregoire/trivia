@@ -10,7 +10,12 @@ import java.io.PrintStream;
 
 public abstract class ConsoleOutputTest {
 
-    String PLAYER1_NAME = "Bart";
+    protected final String PLAYER1_NAME = "Bart";
+    protected final String PLAYER2_NAME = "Harry";
+    protected final String PLAYER3_NAME = "Ben";
+    protected final String PLAYER4_NAME = "Luc";
+    protected final String PLAYER5_NAME = "Marie";
+    protected final String PLAYER6_NAME = "Mark";
 
     protected final ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
 
