@@ -13,7 +13,6 @@ public class Game {
     LinkedList rockQuestions = new LinkedList();
 
     Player currentPlayer;
-    boolean isGettingOutOfPenaltyBox;
     private String ANSWER_WAS_CORRECT_LINE = "Answer was correct!!!!";
     private String GOLD_COINS_LINE = "%s now has %s Gold Coins.";
     private String PLAYER_ADDED_LINE = "%s was added";
@@ -45,9 +44,7 @@ public class Game {
     }
 
     public void add(String playerName) {
-
         players.add(player(playerName, players.size()));
-
         printPlayerNameLine(playerName);
         printPlayerNumberLine();
     }
@@ -69,15 +66,9 @@ public class Game {
             currentPlayer = players.get(0);
         }
         printCurrentPlayerLine();
-
         printRolledLine(roll);
-        if (currentPlayer.isInPenaltyBox()) {
-            if (isOddNumber(roll)) {
-                getOutOfPenaltyBox();
-            } else {
-                doNotGetOutOfPenaltyBox();
-            }
-        }
+
+        getOutOfPenaltyBoxIfNecessary(roll);
 
         if (!currentPlayer.isInPenaltyBox() || (isOddNumber(roll))) {
             currentPlayer.addToLocation(roll);
@@ -87,13 +78,21 @@ public class Game {
         }
     }
 
+    private void getOutOfPenaltyBoxIfNecessary(int roll) {
+        if (currentPlayer.isInPenaltyBox()) {
+            if (isOddNumber(roll)) {
+                getOutOfPenaltyBox();
+            } else {
+                doNotGetOutOfPenaltyBox();
+            }
+        }
+    }
+
     private void doNotGetOutOfPenaltyBox() {
         printNotOutOfPenaltyBoxLine();
-        isGettingOutOfPenaltyBox = false;
     }
 
     private void getOutOfPenaltyBox() {
-        isGettingOutOfPenaltyBox = true;
         printOutOfPenaltyBoxLine();
     }
 
@@ -204,6 +203,6 @@ public class Game {
     }
 
     private boolean isPlayerNotTheWinner() {
-        return currentPlayer.isInPenaltyBox() && !isGettingOutOfPenaltyBox || !(currentPlayer.getGoldCoins() == 6);
+        return !(currentPlayer.getGoldCoins() == 6);
     }
 }
