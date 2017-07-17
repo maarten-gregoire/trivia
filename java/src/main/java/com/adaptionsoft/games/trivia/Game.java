@@ -20,6 +20,7 @@ public class Game {
     private String GOLD_COINS_LINE = "%s now has %s Gold Coins.";
     private String PLAYER_ADDED_LINE = "%s was added";
     private String PLAYER_NUMBER_LINE = "They are player number %s";
+    private String INCORRECT_ANSWER_LINE = "Question was incorrectly answered";
 
     public Game(){
         for (int i = 0; i < 50; i++) {
@@ -151,15 +152,18 @@ public class Game {
         if (currentPlayer == null) {
             currentPlayer = players.get(0);
         }
-        System.out.println("Question was incorrectly answered");
+        printIncorrectAnswerLine();
+
         System.out.println(currentPlayer.getName() + " was sent to the penalty box");
         inPenaltyBox[currentPlayer.getNumber()] = true;
 
-        int currentPlayerNumber = currentPlayer.getNumber()+1;
-        if (currentPlayerNumber == players.size()) currentPlayerNumber = 0;
-        currentPlayer = players.get(currentPlayerNumber);
+        findCurrentPlayer();
 
         return true;
+    }
+
+    private void printIncorrectAnswerLine() {
+        System.out.println(INCORRECT_ANSWER_LINE);
     }
 
     private boolean isPlayerNotTheWinner() {
